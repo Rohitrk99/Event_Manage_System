@@ -21,7 +21,7 @@ const AdminDashboard = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/admin/users', {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/admin/users`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(res.data);
@@ -39,7 +39,7 @@ const AdminDashboard = () => {
   const updateMembership = async (vendorId) => {
     try {
       const membership = selectedMembership[vendorId] || "6 months";
-      await axios.put(`http://localhost:5000/admin/membership/${vendorId}`, 
+      await axios.put(`${import.meta.env.VITE_API_URL}/admin/membership/${vendorId}`, 
         { membership }, 
         { headers: { Authorization: `Bearer ${token}` } }
       );

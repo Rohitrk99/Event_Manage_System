@@ -18,7 +18,7 @@ const VendorItems = () => {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        `http://localhost:5000/user/products/${vendorId}`,
+        `${import.meta.env.VITE_API_URL}/user/products/${vendorId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },

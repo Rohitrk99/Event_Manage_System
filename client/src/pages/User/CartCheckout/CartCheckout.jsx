@@ -54,7 +54,7 @@
 //         paymentMethod: formData.paymentMethod,
 //       };
 
-//       await axios.post("http://localhost:5000/user/order", payload, {
+//       await axios.post(`${import.meta.env.VITE_API_URL}/user/order`, payload, {
 //         headers: { Authorization: `Bearer ${token}` },
 //       });
 
@@ -243,7 +243,7 @@ const CartCheckout = () => {
         paymentMethod: formData.paymentMethod,
       };
 
-      await axios.post("http://localhost:5000/user/order", payload, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/user/order`, payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

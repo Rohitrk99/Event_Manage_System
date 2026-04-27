@@ -19,7 +19,7 @@ const GuestList = () => {
 
   const fetchGuests = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/user/guests/${userId}`, {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/user/guests/${userId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setGuests(res.data);
@@ -33,13 +33,13 @@ const GuestList = () => {
     try {
       if (isEditing) {
         // Update API
-        await axios.put(`http://localhost:5000/user/guest/${currentGuestId}`, formData, {
+        await axios.put(`${import.meta.env.VITE_API_URL}/user/guest/${currentGuestId}`, formData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setIsEditing(false);
       } else {
         // Add API
-        await axios.post('http://localhost:5000/user/guest', { ...formData, userId }, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/user/guest`, { ...formData, userId }, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }
@@ -57,7 +57,7 @@ const GuestList = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure?")) return;
     try {
-      await axios.delete(`http://localhost:5000/user/guest/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/user/guest/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchGuests();

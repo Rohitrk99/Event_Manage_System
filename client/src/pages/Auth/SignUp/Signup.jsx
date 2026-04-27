@@ -24,7 +24,7 @@ const Signup = () => {
         payload.category = category;
       }
 
-      await axios.post("http://localhost:5000/userRegister", payload);
+      await axios.post(`${import.meta.env.VITE_API_URL}/userRegister`, payload);
 
       alert("Registration Successful! Please login.");
       navigate("/");

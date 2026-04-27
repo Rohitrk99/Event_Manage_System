@@ -21,14 +21,14 @@ const VendorDashboard = () => {
   }, [activeTab]);
 
   const fetchItems = async () => {
-    const res = await axios.get(`http://localhost:5000/vendor/items/${vendorId}`, {
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/vendor/items/${vendorId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setItems(res.data);
   };
 
   const fetchOrders = async () => {
-    const res = await axios.get(`http://localhost:5000/vendor/orders/${vendorId}`, {
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/vendor/orders/${vendorId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setOrders(res.data);
@@ -45,7 +45,7 @@ const VendorDashboard = () => {
     data.append('image', formData.image);
 
     try {
-      await axios.post('http://localhost:5000/vendor/item', data, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/vendor/item`, data, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
       });
       alert("Item Added!");
@@ -54,7 +54,7 @@ const VendorDashboard = () => {
   };
 
   const updateStatus = async (orderId, status) => {
-    await axios.put(`http://localhost:5000/vendor/order/${orderId}/status`, { status }, {
+    await axios.put(`${import.meta.env.VITE_API_URL}/vendor/order/${orderId}/status`, { status }, {
       headers: { Authorization: `Bearer ${token}` }
     });
     alert("Status Updated!");
@@ -95,7 +95,7 @@ const VendorDashboard = () => {
                 <tr key={item._id}>
                   <td><img src={item.image} width="50" alt="" /></td>
                   <td>{item.name}</td><td>₹{item.price}</td>
-                  <td><button onClick={async () => { await axios.delete(`http://localhost:5000/vendor/item/${item._id}`, { headers: { Authorization: `Bearer ${token}` } }); fetchItems(); }}>Delete</button></td>
+                  <td><button onClick={async () => { await axios.delete(`${import.meta.env.VITE_API_URL}/vendor/item/${item._id}`, { headers: { Authorization: `Bearer ${token}` } }); fetchItems(); }}>Delete</button></td>
                 </tr>
               ))}
             </tbody>

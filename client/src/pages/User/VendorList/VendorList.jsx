@@ -18,7 +18,7 @@ const VendorList = () => {
   const fetchVendors = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/user/vendors/${category}`,
+        `${import.meta.env.VITE_API_URL}/user/vendors/${category}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
