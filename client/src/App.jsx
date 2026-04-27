@@ -9,7 +9,8 @@ import GuestList from './pages/User/GuestList/GuestList';
 import VendorDashboard from './pages/Vendor/VendorDashboard';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import VendorList from './pages/User/VendorList/VendorList';
-
+import CartCheckout from './pages/User/CartCheckout/CartCheckout';
+import CartCheckoutDetails from './pages/User/CartCheckout/CartCheckoutDetails';
 
 function App() {
   return (
@@ -31,7 +32,9 @@ function App() {
           <Route path="/user/vendor/:vendorId" element={<VendorItems />} />
           <Route path="/user/vendors/:category" element={<VendorList />} />
 
-          {/* <Route path="/checkout" element={<CartCheckout />} /> */}
+          <Route path="/checkout" element={<CartCheckout />} />
+          {/* <Route path="/checkout-details" element={<CartCheckoutDetails />} /> */}
+          
           <Route path="/orders" element={<OrderStatus />} />
           <Route path="/guests" element={<GuestList />} />
         </Routes>

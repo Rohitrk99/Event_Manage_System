@@ -1,110 +1,331 @@
 .up-container {
   min-height: 100vh;
-  background-color: #f3f4f6;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--light-bg) 0%, #e9ecef 100%);
+  padding: 2rem 1.5rem;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Decorative background elements */
+.up-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  
 }
 
 .up-banner {
-  background-color: #3b82f6;
-  color: white;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--white);
   text-align: center;
-  padding: 20px;
-  border-radius: 8px;
-  font-size: 1.8rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-  margin-bottom: 40px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem 1rem;
+  border-radius: 2rem;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 3rem;
+  box-shadow: 0 20px 30px -10px rgba(67, 97, 238, 0.3);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+}
+
+.up-banner::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+  animation: bannerShine 8s infinite;
+}
+
+@keyframes bannerShine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
 }
 
 .up-main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  max-width: 1000px;
-  margin: 0 auto;
+  gap: 2rem;
 }
 
 .up-selection-area {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 2rem;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 .up-dropdown-card {
-  background-color: #bfdbfe;
-  padding: 15px;
-  border-radius: 15px;
-  border: 1px solid #3b82f6;
-  width: 200px;
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 15px 30px -10px rgba(0,0,0,0.1);
+  width: 260px;
+  border: 1px solid rgba(67, 97, 238, 0.1);
+  transition: all 0.3s ease;
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.up-dropdown-card:hover {
+  transform: translateY(-5px);
+  color: #fff;
+  box-shadow: 0 25px 40px -15px rgba(67, 97, 238, 0.3);
 }
 
 .up-dropdown-card h4 {
-  margin-bottom: 10px;
-  color: #1e3a8a;
-  font-weight: bold;
+  margin: 0 0 1rem 0;
+  color: var(--secondary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .up-select {
   width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #3b82f6;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  border: 2px solid #e9ecef;
+  background: var(--light-bg);
+  font-size: 1rem;
+  color: var(--dark);
   outline: none;
   cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234361ee' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.2rem;
+}
+
+.up-select:hover {  
+  border-color: var(--primary);
+}
+
+.up-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(247, 37, 133, 0.1);
 }
 
 .up-grid-menu {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  flex: 1;
+  min-width: 300px;
 }
 
 .up-menu-btn {
-  background-color: #3b82f6;
-  color: white;
+  background: var(--white);
+  color: var(--dark);
   border: none;
-  padding: 30px 10px;
-  border-radius: 10px;
-  font-size: 1.1rem;
+  padding: 2rem 1rem;
+  border-radius: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 20px -5px rgba(0,0,0,0.05);
+  border: 1px solid rgba(67, 97, 238, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.up-menu-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.up-menu-btn span {
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
 }
 
 .up-menu-btn:hover {
-  background-color: #2563eb;
   transform: translateY(-5px);
+  box-shadow: 0 20px 30px -10px rgba(67, 97, 238, 0.3);
+  border-color: transparent;
+   color: var(--white)!important; 
 }
+
+.up-menu-btn:hover::before {
+  opacity: 1;
+}
+
+
+/* Individual button variations (subtle) */
+.up-menu-btn:nth-child(1):hover::before { background: linear-gradient(135deg, var(--primary), #5a4fcf); }
+.up-menu-btn:nth-child(2):hover::before { background: linear-gradient(135deg, var(--primary), #4f46e5); }
+.up-menu-btn:nth-child(3):hover::before { background: linear-gradient(135deg, var(--secondary), #4c40b0); }
+.up-menu-btn:nth-child(4):hover::before { background: linear-gradient(135deg, var(--accent), #d61f6f); }
 
 .up-logout-section {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 2rem;
+  padding: 1rem;
 }
 
 .up-logout-btn {
-  background-color: #3b82f6;
-  color: white;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--white);
   border: none;
-  padding: 12px 40px;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
+  padding: 1rem 4rem;
+  border-radius: 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 15px 25px -8px rgba(67, 97, 238, 0.4);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 1px;
+}
+
+.up-logout-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .up-logout-btn:hover {
-  background-color: #dc2626; 
+  transform: translateY(-3px);
+  box-shadow: 0 20px 30px -8px rgba(247, 37, 133, 0.5);
 }
 
-@media (max-width: 600px) {
-  .up-banner { font-size: 1.4rem; }
-  .up-grid-menu { grid-template-columns: 1fr 1fr; }
+.up-logout-btn:hover::after {
+  opacity: 1;
+}
+
+.up-logout-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .up-grid-menu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .up-dropdown-card {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .up-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .up-banner {
+    border-radius: 1.5rem;
+    padding: 1.5rem 1rem;
+    font-size: 1.8rem;
+  }
+  
+  .up-menu-btn {
+    padding: 1.5rem 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .up-logout-btn {
+    padding: 0.875rem 3rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .up-grid-menu {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .up-menu-btn {
+    padding: 1.2rem;
+  }
+  
+  .up-banner {
+    font-size: 1.5rem;
+    padding: 1.2rem;
+  }
+  
+  .up-dropdown-card {
+    padding: 1.2rem;
+  }
+  
+  .up-select {
+    padding: 0.6rem 1rem;
+  }
+  
+  .up-logout-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Add smooth scrolling and better font rendering */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

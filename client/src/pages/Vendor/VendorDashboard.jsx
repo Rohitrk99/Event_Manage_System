@@ -13,6 +13,8 @@ const VendorDashboard = () => {
   const token = localStorage.getItem('token');
   const vendorId = localStorage.getItem('userId');
 
+  const userName = localStorage.getItem('userName') || 'Vendor';
+
   useEffect(() => {
     if (activeTab === 'items') fetchItems();
     if (activeTab === 'orders') fetchOrders();
@@ -61,7 +63,7 @@ const VendorDashboard = () => {
 
   return (
     <div className="vd-container">
-      <div className="vd-banner">WELCOME VENDOR</div>
+      <div className="vd-banner">WELCOME, {userName.toUpperCase()}</div>
       
       <div className="vd-nav-tabs">
         <button className={`vd-tab-btn ${activeTab === 'items' ? 'active' : ''}`} onClick={() => setActiveTab('items')}>Your Item</button>

@@ -4,6 +4,7 @@
   "description": "A event management system",
   "main": "index.js",
   "scripts": {
+    "start": "node -r dotenv/config index.js",
     "dev": "nodemon -r dotenv/config --experimental-json-modules index.js"
   },
   "author": "",

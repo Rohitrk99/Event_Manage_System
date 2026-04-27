@@ -1,7 +1,31 @@
+:root {
+  --primary: #4361ee;
+  --secondary: #3a0ca3;
+  --accent: #f72585;
+  --light-bg: #f8f9fa;
+  --white: #ffffff;
+  --dark: #212529;
+}
+
 .vl-wrapper {
   min-height: 100vh;
-  background-color: #e5e7eb;
-  padding: 20px;
+  background: linear-gradient(135deg, var(--light-bg) 0%, #e9ecef 100%);
+  padding: 2rem 1.5rem;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative;
+}
+
+/* Decorative background (consistent with UserPortal) */
+.vl-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.03) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 /* Navbar */
@@ -9,72 +33,223 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #3b82f6;
-  padding: 12px 25px;
-  border-radius: 6px;
-  color: white;
-  margin-bottom: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  padding: 1rem 2rem;
+  border-radius: 3rem;
+  color: var(--white);
+  margin-bottom: 3rem;
+  box-shadow: 0 15px 25px -8px rgba(67, 97, 238, 0.3);
+  position: relative;
+  z-index: 1;
 }
 
 .vl-title {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: capitalize;
 }
 
 .vl-nav-btn {
-  background-color: white;
-  color: #3b82f6;
+  background: var(--white);
+  color: var(--primary);
   border: none;
-  padding: 6px 18px;
-  border-radius: 4px;
-  font-weight: bold;
+  padding: 0.6rem 1.8rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  border: 1px solid transparent;
 }
 
-/* Vendor Cards Layout */
+.vl-nav-btn:hover {
+  background: var(--accent);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(247, 37, 133, 0.4);
+}
+
+/* Vendor Cards Container */
 .vl-container {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 2rem;
   flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
+/* Individual Card */
 .vl-card {
-  background-color: #3b82f6;
-  color: white;
-  width: 200px;
-  height: 260px;
-  border-radius: 25px;
-  padding: 20px;
+  background: var(--white);
+  width: 240px;
+  border-radius: 1.8rem;
+  padding: 1.8rem 1.2rem;
   text-align: center;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 15px 30px -10px rgba(0,0,0,0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(67, 97, 238, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 1rem;
+  backdrop-filter: blur(5px);
+}
+
+.vl-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 40px -15px rgba(67, 97, 238, 0.3);
+  border-color: transparent;
 }
 
 .vl-card h3 {
-  font-size: 1.1rem;
+  color: var(--secondary);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
 }
 
+.vl-card p {
+  color: var(--dark);
+  font-size: 0.95rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Shop Item Button */
 .vl-shop-btn {
-  background-color: white;
-  color: black;
-  border: 2px solid #22c55e;
-  padding: 10px;
-  border-radius: 6px;
-  font-weight: 500;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px -5px rgba(67, 97, 238, 0.4);
+  margin-top: 0.5rem;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.vl-shop-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.vl-shop-btn:hover::after {
+  opacity: 1;
 }
 
 .vl-shop-btn:hover {
-  background-color: #f9fafb;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px -8px rgba(247, 37, 133, 0.5);
 }
 
-/* Mobile */
-@media (max-width: 600px) {
+.vl-shop-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Empty state message */
+.vl-wrapper > p {
+  text-align: center;
+  color: var(--dark);
+  font-size: 1.2rem;
+  margin-top: 3rem;
+  padding: 1rem;
+  background: rgba(255,255,255,0.7);
+  border-radius: 3rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .vl-wrapper {
+    padding: 1.5rem 1rem;
+  }
+
   .vl-navbar {
     flex-direction: column;
-    gap: 10px;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
   }
+
+  .vl-title {
+    font-size: 1.2rem;
+    order: -1;  /* keep title on top */
+  }
+
+  .vl-nav-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .vl-container {
+    gap: 1.5rem;
+  }
+
+  .vl-card {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vl-navbar {
+    padding: 0.8rem;
+  }
+
+  .vl-nav-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .vl-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .vl-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .vl-shop-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .vl-wrapper > p {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+}
+
+/* Smooth fonts */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
